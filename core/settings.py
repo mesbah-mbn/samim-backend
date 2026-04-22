@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # 🔐 SECURITY
 SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-secret-key")
 DEBUG = False
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 # 📦 APPS
 INSTALLED_APPS = [
@@ -23,36 +23,32 @@ INSTALLED_APPS = [
     "api",
 ]
 
-# ⚙️ MIDDLEWARE (ORDER IS IMPORTANT)
+# ⚙️ MIDDLEWARE (CSRF REMOVED 🔥)
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",  # MUST BE FIRST
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    # ❌ CSRF middleware removed to fix 403
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# 🌍 CORS + CSRF
+# 🌍 CORS SETTINGS
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://leed-production.up.railway.app",
-]
-
-# 📁 STATIC
+# 📁 STATIC FILES
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-# 📁 MEDIA
+# 📁 MEDIA FILES
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-# 🌐 URLS
+# 🌐 URL CONFIG
 ROOT_URLCONF = "core.urls"
 
 # 🧩 TEMPLATES
