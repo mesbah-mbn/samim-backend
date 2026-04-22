@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}Dachfenster-24 Admin{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'api/admin/css/custom_admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+<div class="df-admin-brand">
+    <div class="df-admin-mark">D24</div>
+    <div>
+        <h1 id="site-name">
+            <a href="{% url 'admin:index' %}">Dachfenster-24 Admin</a>
+        </h1>
+        <p>Leads, Produkte und Kundenanfragen verwalten</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block nav-global %}
+<div class="df-admin-shortcuts">
+    <a href="{% url 'admin:api_lead_changelist' %}">Leads</a>
+    <a href="{% url 'admin:api_product_changelist' %}">Produkte</a>
+    <a href="/">Website ansehen</a>
+</div>
+{% endblock %}
